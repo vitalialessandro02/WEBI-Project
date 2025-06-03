@@ -1,0 +1,798 @@
+@prefix : <http://example.org/restaurant-menu#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.org/restaurant-menu#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://example.org/restaurant-menu#hasMeal
+:hasMeal rdf:type owl:AnnotationProperty .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/restaurant-menu#canEat
+:canEat rdf:type owl:ObjectProperty ;
+        rdfs:domain :Guest ;
+        rdfs:range :Meal .
+
+
+###  http://example.org/restaurant-menu#hasAllergen
+:hasAllergen rdf:type owl:ObjectProperty ;
+             rdfs:domain :Meal ;
+             rdfs:range :Allergen .
+
+
+###  http://example.org/restaurant-menu#hasAllergy
+:hasAllergy rdf:type owl:ObjectProperty ;
+            rdfs:domain :Guest ;
+            rdfs:range :Allergen .
+
+
+###  http://example.org/restaurant-menu#hasDietPreference
+:hasDietPreference rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Guest ;
+                   rdfs:range :DietType .
+
+
+###  http://example.org/restaurant-menu#hasDietType
+:hasDietType rdf:type owl:ObjectProperty ;
+             rdfs:domain :Meal ;
+             rdfs:range :DietType .
+
+
+###  http://example.org/restaurant-menu#hasIngredient
+:hasIngredient rdf:type owl:ObjectProperty ;
+               rdfs:domain :Meal ;
+               rdfs:range :Ingredient .
+
+
+###  http://example.org/restaurant-menu#notRecommended
+:notRecommended rdf:type owl:ObjectProperty ;
+                rdfs:domain :Guest ;
+                rdfs:range :Meal .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/restaurant-menu#hasCalorieLimit
+:hasCalorieLimit rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Guest ;
+                 rdfs:range xsd:integer .
+
+
+###  http://example.org/restaurant-menu#hasCalories
+:hasCalories rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Meal ;
+             rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/restaurant-menu#Allergen
+:Allergen rdf:type owl:Class .
+
+
+###  http://example.org/restaurant-menu#DietType
+:DietType rdf:type owl:Class .
+
+
+###  http://example.org/restaurant-menu#Guest
+:Guest rdf:type owl:Class .
+
+
+###  http://example.org/restaurant-menu#Ingredient
+:Ingredient rdf:type owl:Class .
+
+
+###  http://example.org/restaurant-menu#Meal
+:Meal rdf:type owl:Class .
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Class
+rdf:Class rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/restaurant-menu#Allergen
+:Allergen rdf:type owl:NamedIndividual ,
+                   rdf:Class .
+
+
+###  http://example.org/restaurant-menu#Basil
+:Basil rdf:type owl:NamedIndividual ,
+                :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Bechamel
+:Bechamel rdf:type owl:NamedIndividual ,
+                   :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Beef
+:Beef rdf:type owl:NamedIndividual ,
+               :Ingredient .
+
+
+###  http://example.org/restaurant-menu#BisteccaAllaFiorentina
+:BisteccaAllaFiorentina rdf:type owl:NamedIndividual ,
+                                 :Meal ;
+                        :hasDietType :Carnivore ;
+                        :hasIngredient :Beef ;
+                        :hasCalories 550 .
+
+
+###  http://example.org/restaurant-menu#Bread
+:Bread rdf:type owl:NamedIndividual ,
+                :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Bruschetta
+:Bruschetta rdf:type owl:NamedIndividual ,
+                     :Meal ;
+            :hasAllergen :Gluten ;
+            :hasDietType :Carnivore ,
+                         :Vegan ,
+                         :Vegetarian ;
+            :hasIngredient :Basil ,
+                           :Bread ,
+                           :Garlic ,
+                           :Tomato ;
+            :hasCalories 180 .
+
+
+###  http://example.org/restaurant-menu#Carnivore
+:Carnivore rdf:type owl:NamedIndividual ,
+                    :DietType .
+
+
+###  http://example.org/restaurant-menu#Carrots
+:Carrots rdf:type owl:NamedIndividual ,
+                  :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Cheese
+:Cheese rdf:type owl:NamedIndividual ,
+                 :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Chili
+:Chili rdf:type owl:NamedIndividual ,
+                :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Cocoa
+:Cocoa rdf:type owl:NamedIndividual ,
+                :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Coffee
+:Coffee rdf:type owl:NamedIndividual ,
+                 :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Cucumber
+:Cucumber rdf:type owl:NamedIndividual ,
+                   :Ingredient .
+
+
+###  http://example.org/restaurant-menu#DietType
+:DietType rdf:type owl:NamedIndividual ,
+                   rdf:Class .
+
+
+###  http://example.org/restaurant-menu#Dough
+:Dough rdf:type owl:NamedIndividual ,
+                :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Eggplant
+:Eggplant rdf:type owl:NamedIndividual ,
+                   :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Eggs
+:Eggs rdf:type owl:NamedIndividual ,
+               :Allergen ,
+               :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Fish
+:Fish rdf:type owl:NamedIndividual ,
+               :Allergen .
+
+
+###  http://example.org/restaurant-menu#Fontina
+:Fontina rdf:type owl:NamedIndividual ,
+                  :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Garlic
+:Garlic rdf:type owl:NamedIndividual ,
+                 :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Gluten
+:Gluten rdf:type owl:NamedIndividual ,
+                 :Allergen .
+
+
+###  http://example.org/restaurant-menu#Gnocchi
+:Gnocchi rdf:type owl:NamedIndividual ,
+                  :Ingredient .
+
+
+###  http://example.org/restaurant-menu#GnocchiAlPesto
+:GnocchiAlPesto rdf:type owl:NamedIndividual ,
+                         :Meal ;
+                :hasAllergen :Gluten ,
+                             :Lactose ,
+                             :Nuts ;
+                :hasDietType :Carnivore ,
+                             :Vegetarian ;
+                :hasIngredient :Basil ,
+                               :Garlic ,
+                               :Gnocchi ,
+                               :Parmesan ,
+                               :PineNuts ;
+                :hasCalories 550 .
+
+
+###  http://example.org/restaurant-menu#Gorgonzola
+:Gorgonzola rdf:type owl:NamedIndividual ,
+                     :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Guest
+:Guest rdf:type owl:NamedIndividual ,
+                rdf:Class .
+
+
+###  http://example.org/restaurant-menu#Ingredient
+:Ingredient rdf:type owl:NamedIndividual ,
+                     rdf:Class .
+
+
+###  http://example.org/restaurant-menu#InsalataCaprese
+:InsalataCaprese rdf:type owl:NamedIndividual ,
+                          :Meal ;
+                 :hasAllergen :Lactose ;
+                 :hasDietType :Carnivore ,
+                              :Vegetarian ;
+                 :hasIngredient :Basil ,
+                                :Mozzarella ,
+                                :OliveOil ,
+                                :Tomato ;
+                 :hasCalories 300 .
+
+
+###  http://example.org/restaurant-menu#InsalataMista
+:InsalataMista rdf:type owl:NamedIndividual ,
+                        :Meal ;
+               :hasDietType :Carnivore ,
+                            :Vegan ,
+                            :Vegetarian ;
+               :hasIngredient :Carrots ,
+                              :Cucumber ,
+                              :Lettuce ,
+                              :Tomato ;
+               :hasCalories 120 .
+
+
+###  http://example.org/restaurant-menu#Lactose
+:Lactose rdf:type owl:NamedIndividual ,
+                  :Allergen .
+
+
+###  http://example.org/restaurant-menu#Ladyfingers
+:Ladyfingers rdf:type owl:NamedIndividual ,
+                      :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Lasagne
+:Lasagne rdf:type owl:NamedIndividual ,
+                  :Meal ;
+         :hasAllergen :Gluten ,
+                      :Lactose ;
+         :hasDietType :Carnivore ;
+         :hasIngredient :Bechamel ,
+                        :Parmesan ,
+                        :Pasta ,
+                        :Ragu ;
+         :hasCalories 750 .
+
+
+###  http://example.org/restaurant-menu#Lettuce
+:Lettuce rdf:type owl:NamedIndividual ,
+                  :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Mario
+:Mario rdf:type owl:NamedIndividual ,
+                :Guest ;
+       :hasAllergy :Lactose ;
+       :hasDietPreference :Vegetarian ;
+       :hasCalorieLimit 500 .
+
+
+###  http://example.org/restaurant-menu#Mascarpone
+:Mascarpone rdf:type owl:NamedIndividual ,
+                     :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Meal
+:Meal rdf:type owl:NamedIndividual ,
+               rdf:Class .
+
+
+###  http://example.org/restaurant-menu#MelanzaneAllaParmigiana
+:MelanzaneAllaParmigiana rdf:type owl:NamedIndividual ,
+                                  :Meal ;
+                         :hasAllergen :Lactose ;
+                         :hasDietType :Carnivore ,
+                                      :Vegetarian ;
+                         :hasIngredient :Eggplant ,
+                                        :Mozzarella ,
+                                        :Parmesan ,
+                                        :Tomato ;
+                         :hasCalories 380 .
+
+
+###  http://example.org/restaurant-menu#Mozzarella
+:Mozzarella rdf:type owl:NamedIndividual ,
+                     :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Mushrooms
+:Mushrooms rdf:type owl:NamedIndividual ,
+                    :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Nuts
+:Nuts rdf:type owl:NamedIndividual ,
+               :Allergen .
+
+
+###  http://example.org/restaurant-menu#OliveOil
+:OliveOil rdf:type owl:NamedIndividual ,
+                   :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Pancetta
+:Pancetta rdf:type owl:NamedIndividual ,
+                   :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Parmesan
+:Parmesan rdf:type owl:NamedIndividual ,
+                   :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Pasta
+:Pasta rdf:type owl:NamedIndividual ,
+                :Ingredient .
+
+
+###  http://example.org/restaurant-menu#PastaAlPomodoro
+:PastaAlPomodoro rdf:type owl:NamedIndividual ,
+                          :Meal ;
+                 :hasAllergen :Gluten ;
+                 :hasDietType :Carnivore ,
+                              :Vegan ,
+                              :Vegetarian ;
+                 :hasIngredient :Basil ,
+                                :Pasta ,
+                                :TomatoSauce ;
+                 :hasCalories 380 .
+
+
+###  http://example.org/restaurant-menu#PenneAllArrabbiata
+:PenneAllArrabbiata rdf:type owl:NamedIndividual ,
+                             :Meal ;
+                    :hasAllergen :Gluten ;
+                    :hasDietType :Carnivore ,
+                                 :Vegan ,
+                                 :Vegetarian ;
+                    :hasIngredient :Chili ,
+                                   :Garlic ,
+                                   :Pasta ,
+                                   :TomatoSauce ;
+                    :hasCalories 450 .
+
+
+###  http://example.org/restaurant-menu#PineNuts
+:PineNuts rdf:type owl:NamedIndividual ,
+                   :Ingredient .
+
+
+###  http://example.org/restaurant-menu#PizzaMargherita
+:PizzaMargherita rdf:type owl:NamedIndividual ,
+                          :Meal ;
+                 :hasAllergen :Gluten ,
+                              :Lactose ;
+                 :hasDietType :Carnivore ,
+                              :Vegetarian ;
+                 :hasIngredient :Basil ,
+                                :Dough ,
+                                :Mozzarella ,
+                                :TomatoSauce ;
+                 :hasCalories 850 .
+
+
+###  http://example.org/restaurant-menu#PizzaQuattroFormaggi
+:PizzaQuattroFormaggi rdf:type owl:NamedIndividual ,
+                               :Meal ;
+                      :hasAllergen :Gluten ,
+                                   :Lactose ;
+                      :hasDietType :Carnivore ,
+                                   :Vegetarian ;
+                      :hasIngredient :Dough ,
+                                     :Fontina ,
+                                     :Gorgonzola ,
+                                     :Mozzarella ,
+                                     :Parmesan ;
+                      :hasCalories 950 .
+
+
+###  http://example.org/restaurant-menu#Ragu
+:Ragu rdf:type owl:NamedIndividual ,
+               :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Rice
+:Rice rdf:type owl:NamedIndividual ,
+               :Ingredient .
+
+
+###  http://example.org/restaurant-menu#RisottoAiFunghi
+:RisottoAiFunghi rdf:type owl:NamedIndividual ,
+                          :Meal ;
+                 :hasAllergen :Lactose ;
+                 :hasDietType :Carnivore ,
+                              :Vegetarian ;
+                 :hasIngredient :Mushrooms ,
+                                :Parmesan ,
+                                :Rice ,
+                                :VegetableBroth ;
+                 :hasCalories 450 .
+
+
+###  http://example.org/restaurant-menu#SpaghettiAlTonno
+:SpaghettiAlTonno rdf:type owl:NamedIndividual ,
+                           :Meal ;
+                  :hasAllergen :Fish ,
+                               :Gluten ;
+                  :hasDietType :Carnivore ;
+                  :hasIngredient :Garlic ,
+                                 :OliveOil ,
+                                 :Pasta ,
+                                 :Tuna ;
+                  :hasCalories 520 .
+
+
+###  http://example.org/restaurant-menu#SpaghettiAllaCarbonara
+:SpaghettiAllaCarbonara rdf:type owl:NamedIndividual ,
+                                 :Meal ;
+                        :hasAllergen :Eggs ,
+                                     :Gluten ,
+                                     :Lactose ;
+                        :hasDietType :Carnivore ;
+                        :hasIngredient :Cheese ,
+                                       :Eggs ,
+                                       :Pancetta ,
+                                       :Pasta ;
+                        :hasCalories 650 .
+
+
+###  http://example.org/restaurant-menu#Tiramisu
+:Tiramisu rdf:type owl:NamedIndividual ,
+                   :Meal ;
+          :hasAllergen :Eggs ,
+                       :Gluten ,
+                       :Lactose ;
+          :hasDietType :Carnivore ,
+                       :Vegetarian ;
+          :hasIngredient :Cocoa ,
+                         :Coffee ,
+                         :Ladyfingers ,
+                         :Mascarpone ;
+          :hasCalories 420 .
+
+
+###  http://example.org/restaurant-menu#Tomato
+:Tomato rdf:type owl:NamedIndividual ,
+                 :Ingredient .
+
+
+###  http://example.org/restaurant-menu#TomatoSauce
+:TomatoSauce rdf:type owl:NamedIndividual ,
+                      :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Tuna
+:Tuna rdf:type owl:NamedIndividual ,
+               :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Vegan
+:Vegan rdf:type owl:NamedIndividual ,
+                :DietType .
+
+
+###  http://example.org/restaurant-menu#VegetableBroth
+:VegetableBroth rdf:type owl:NamedIndividual ,
+                         :Ingredient .
+
+
+###  http://example.org/restaurant-menu#Vegetarian
+:Vegetarian rdf:type owl:NamedIndividual ,
+                     :DietType .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:Menu :hasMeal :BisteccaAllaFiorentina ,
+               :Bruschetta ,
+               :GnocchiAlPesto ,
+               :InsalataCaprese ,
+               :InsalataMista ,
+               :Lasagne ,
+               :MelanzaneAllaParmigiana ,
+               :PastaAlPomodoro ,
+               :PenneAllArrabbiata ,
+               :PizzaMargherita ,
+               :PizzaQuattroFormaggi ,
+               :RisottoAiFunghi ,
+               :SpaghettiAlTonno ,
+               :SpaghettiAllaCarbonara ,
+               :Tiramisu .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+:g rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:a rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:m rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:d rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:limit rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:dp rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:mt rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:cal rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Can Eat" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Guest ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Meal ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :m
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDietPreference ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :d
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDietType ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :d
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasCalorieLimit ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :limit
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasCalories ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThan> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#arguments> ( :c
+                                                                                                                                                                      :limit
+                                                                                                                                                                    )
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :canEat ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :m
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "WithoutAllergeni" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Guest ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasAllergy ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :a
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Meal ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :m
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasAllergen ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :a
+                                                                                      ] ;
+                                                                            rdf:rest rdf:nil
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :notRecommended ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :m
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "NotDietCompatibility" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Guest ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDietPreference ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :dp
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Meal ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :m
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDietType ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :mt
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#notEqual> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#arguments> ( :dp
+                                                                                                                                                :mt
+                                                                                                                                              )
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :notRecommended ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :m
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "CalorieLimit" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Guest ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasCalorieLimit ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :limit
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Meal ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :m
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasCalories ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :cal
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#arguments> ( :cal
+                                                                                                                                                :limit
+                                                                                                                                              )
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :notRecommended ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :m
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

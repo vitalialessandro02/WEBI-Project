@@ -1,0 +1,94 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix : <http://example.org/restaurant-menu#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# SHACL Shape for Menu (deve avere almeno un piatto associato)
+#################################################################
+
+:MenuShape a sh:NodeShape ;
+  sh:targetClass :Menu ;
+
+  sh:property [
+    sh:path :hasMeal ;
+    sh:minCount 1 ;
+    sh:message "Ogni menu deve avere almeno un piatto associato." ;
+  ] .
+
+#################################################################
+# SHACL Shape for Meal
+#################################################################
+
+:MealShape a sh:NodeShape ;
+  sh:targetClass :Meal ;
+
+  # Deve avere almeno un ingrediente
+  sh:property [
+    sh:path :hasIngredient ;
+    sh:minCount 1 ;
+    sh:message "Ogni piatto deve avere almeno un ingrediente." ;
+  ] ;
+
+  # Deve avere un valore di calorie positivo
+  sh:property [
+    sh:path :hasCalories ;
+    sh:datatype xsd:integer ;
+    sh:minInclusive 0 ;
+    sh:maxInclusive 1500 ;
+    sh:message "Le calorie devono essere un numero positivo compreso tra 0 e 1500." ;
+  ] ;
+
+  # Deve avere almeno un tipo di dieta
+  sh:property [
+    sh:path :hasDietType ;
+    sh:class :DietType ;
+    sh:minCount 1 ;
+    sh:message "Ogni piatto deve avere almeno un tipo di dieta associato." ;
+  ] ;
+
+  # Gli allergeni possono essere da 0 a molti, ma devono essere validi
+  sh:property [
+    sh:path :hasAllergen ;
+    sh:class :Allergen ;
+    sh:minCount 0 ;
+    sh:message "Gli allergeni devono essere istanze valide di Allergen." ;
+  ] .
+
+#################################################################
+# SHACL Shape for Ingredient
+#################################################################
+
+:IngredientShape a sh:NodeShape ;
+  sh:targetClass :Ingredient ;
+
+  sh:property [
+    sh:path :hasCalories ;
+    sh:datatype xsd:integer ;
+    sh:minInclusive 0 ;
+    sh:maxInclusive 1000 ;
+    sh:message "Le calorie degli ingredienti devono essere tra 0 e 1000." ;
+  ] .
+
+#################################################################
+# SHACL Shape for Guest
+#################################################################
+
+:GuestShape a sh:NodeShape ;
+  sh:targetClass :Guest ;
+
+  # Preferenze dietetiche (0 o più)
+  sh:property [
+    sh:path :hasDietPreference ;
+    sh:class :DietType ;
+    sh:minCount 0 ;
+    sh:message "Le preferenze dietetiche devono essere istanze di DietType." ;
+  ] ;
+
+  # Allergie (0 o più)
+  sh:property [
+    sh:path :hasAllergy ;
+    sh:class :Allergen ;
+    sh:minCount 0 ;
+    sh:message "Le allergie devono essere istanze valide di Allergen." ;
+  ] .
+

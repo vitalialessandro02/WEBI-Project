@@ -1,0 +1,174 @@
+% Menu Items Facts
+% dish(Name, Ingredients, DietTypes, Calories, Allergens)
+dish('Spaghetti alla Carbonara', ['pasta', 'uova', 'pancetta', 'formaggio'], ['Carnivore'], 650, ['Gluten', 'Lactose', 'Eggs']).
+dish('Pizza Margherita', ['impasto', 'salsa di pomodoro', 'mozzarella', 'basilico'], ['Vegetarian', 'Carnivore'], 850, ['Gluten', 'Lactose']).
+dish('Penne all\'Arrabbiata', ['pasta', 'salsa di pomodoro', 'peperoncino', 'aglio'], ['Vegan', 'Vegetarian', 'Carnivore'], 450, ['Gluten']).
+dish('Bistecca alla Fiorentina', ['carne di manzo'], ['Carnivore'], 550, []).
+dish('Insalata Caprese', ['pomodoro', 'mozzarella', 'basilico', 'olio'], ['Vegetarian', 'Carnivore'], 300, ['Lactose']).
+dish('Risotto ai Funghi', ['riso', 'funghi', 'brodo vegetale', 'parmigiano'], ['Vegetarian', 'Carnivore'], 450, ['Lactose']).
+dish('Pasta al Pomodoro', ['pasta', 'salsa di pomodoro', 'basilico'], ['Vegan', 'Vegetarian', 'Carnivore'], 380, ['Gluten']).
+dish('Lasagne', ['pasta', 'ragù', 'besciamella', 'parmigiano'], ['Carnivore'], 750, ['Gluten', 'Lactose']).
+dish('Tiramisu', ['savoiardi', 'mascarpone', 'caffe', 'cacao'], ['Vegetarian', 'Carnivore'], 420, ['Gluten', 'Lactose', 'Eggs']).
+dish('Insalata Mista', ['lattuga', 'pomodoro', 'carote', 'cetrioli'], ['Vegan', 'Vegetarian', 'Carnivore'], 120, []).
+dish('Spaghetti al Tonno', ['pasta', 'tonno', 'aglio', 'olio'], ['Carnivore'], 520, ['Gluten', 'Fish']).
+dish('Bruschetta', ['pane', 'pomodoro', 'aglio', 'basilico'], ['Vegan', 'Vegetarian', 'Carnivore'], 180, ['Gluten']).
+dish('Melanzane alla Parmigiana', ['melanzane', 'pomodoro', 'mozzarella', 'parmigiano'], ['Vegetarian', 'Carnivore'], 380, ['Lactose']).
+dish('Gnocchi al Pesto', ['gnocchi', 'basilico', 'pinoli', 'parmigiano', 'aglio'], ['Vegetarian', 'Carnivore'], 550, ['Gluten', 'Lactose', 'Nuts']).
+dish('Pizza Quattro Formaggi', ['impasto', 'mozzarella', 'gorgonzola', 'parmigiano', 'fontina'], ['Vegetarian', 'Carnivore'], 950, ['Gluten', 'Lactose']).
+
+% Ingredients Facts
+% ingredient(Name, Type, CaloriesPer100g)
+ingredient('pasta', 'carboidrati', 130).
+ingredient('impasto', 'carboidrati', 250).
+ingredient('riso', 'carboidrati', 130).
+ingredient('uova', 'proteina', 155).
+ingredient('pancetta', 'carne', 540).
+ingredient('formaggio', 'latticini', 350).
+ingredient('mozzarella', 'latticini', 280).
+ingredient('parmigiano', 'latticini', 420).
+ingredient('gorgonzola', 'latticini', 350).
+ingredient('fontina', 'latticini', 380).
+ingredient('salsa di pomodoro', 'verdura', 35).
+ingredient('pomodoro', 'verdura', 18).
+ingredient('basilico', 'verdura', 22).
+ingredient('peperoncino', 'verdura', 40).
+ingredient('aglio', 'verdura', 149).
+ingredient('funghi', 'verdura', 22).
+ingredient('carne di manzo', 'carne', 250).
+ingredient('tonno', 'pesce', 130).
+ingredient('olio', 'condimento', 900).
+ingredient('brodo vegetale', 'condimento', 10).
+ingredient('ragù', 'carne', 120).
+ingredient('besciamella', 'latticini', 350).
+ingredient('lattuga', 'verdura', 15).
+ingredient('carote', 'verdura', 40).
+ingredient('cetrioli', 'verdura', 16).
+ingredient('pane', 'carboidrati', 265).
+ingredient('melanzane', 'verdura', 25).
+ingredient('gnocchi', 'carboidrati', 160).
+ingredient('pinoli', 'frutta secca', 670).
+ingredient('savoiardi', 'carboidrati', 380).
+ingredient('mascarpone', 'latticini', 450).
+ingredient('caffe', 'bevanda', 2).
+ingredient('cacao', 'condimento', 355).
+
+% Diet Compatibility Rules
+diet_compatible(DishName, 'Carnivore') :- 
+    dish(DishName, _, DietTypes, _, _), 
+    member('Carnivore', DietTypes).
+
+diet_compatible(DishName, 'Vegetarian') :- 
+    dish(DishName, _, DietTypes, _, _), 
+    (member('Vegetarian', DietTypes) ; member('Vegan', DietTypes)).
+
+diet_compatible(DishName, 'Vegan') :- 
+    dish(DishName, _, DietTypes, _, _), 
+    member('Vegan', DietTypes).
+
+% Allergy Safety Rules
+allergy_safe(DishName, []) :- 
+    dish(DishName, _, _, _, _).
+
+allergy_safe(DishName, GuestAllergies) :- 
+    dish(DishName, _, _, _, DishAllergens), 
+    \+ (member(Allergen, GuestAllergies), member(Allergen, DishAllergens)).
+
+% Calorie Check Rules
+meets_calorie_limit(DishName, CalorieLimit) :- 
+    (CalorieLimit =< 0 ; CalorieLimit = null), 
+    dish(DishName, _, _, _, _).
+
+meets_calorie_limit(DishName, CalorieLimit) :- 
+    CalorieLimit > 0, 
+    dish(DishName, _, _, Calories, _), 
+    Calories =< CalorieLimit.
+
+% Main Recommendation Rule
+recommend_dish(DishName, DietType, Allergies, CalorieLimit) :- 
+    diet_compatible(DishName, DietType), 
+    allergy_safe(DishName, Allergies), 
+    meets_calorie_limit(DishName, CalorieLimit).
+
+% Helper rule to get all recommended dishes
+get_all_recommended_dishes(DietType, Allergies, CalorieLimit, RecommendedDishes) :- 
+    setof(DishName, recommend_dish(DishName, DietType, Allergies, CalorieLimit), RecommendedDishes), !.
+get_all_recommended_dishes(_, _, _, []).  % fallback in caso non ci siano risultati
+
+% Guest Profile Definitions
+guest_profile('Carnivore', [], 0).
+guest_profile('Vegetarian', [], 0).
+guest_profile('Vegan', [], 0).
+guest_profile('Calorie-conscious', [], 500).
+guest_profile('Gluten-intolerant', ['Gluten'], 0).
+guest_profile('Lactose-intolerant', ['Lactose'], 0).
+guest_profile('Low-calorie Vegetarian', [], 400).
+guest_profile('Allergic to Nuts', ['Nuts'], 0).
+guest_profile('No Seafood', ['Fish', 'Shellfish'], 0).
+guest_profile('Multiple Allergies', ['Gluten', 'Lactose', 'Eggs'], 0).
+
+% Get recommendations for a specific guest profile
+recommend_for_profile(ProfileName, RecommendedDishes) :-
+    guest_profile(ProfileName, Allergies, CalorieLimit),
+    (ProfileName = 'Vegan' -> DietType = 'Vegan' ;
+     ProfileName = 'Vegetarian' -> DietType = 'Vegetarian' ;
+     ProfileName = 'Low-calorie Vegetarian' -> DietType = 'Vegetarian' ;
+     DietType = 'Carnivore'),
+    get_all_recommended_dishes(DietType, Allergies, CalorieLimit, RecommendedDishes).
+
+% Helper rule to check ingredient types in a dish
+dish_contains_ingredient_type(DishName, IngredientType) :-
+    dish(DishName, Ingredients, _, _, _),
+    member(Ingredient, Ingredients),
+    ingredient(Ingredient, IngredientType, _).
+
+% Find dishes with specific ingredient type
+find_dishes_with_ingredient_type(IngredientType, DishList) :-
+    findall(DishName, dish_contains_ingredient_type(DishName, IngredientType), DishList).
+
+% Calculate total calories from ingredients (approximate)
+calculate_dish_calories(DishName, TotalCalories) :-
+    dish(DishName, Ingredients, _, _, _),
+    calculate_ingredients_calories(Ingredients, TotalCalories).
+
+calculate_ingredients_calories([], 0).
+calculate_ingredients_calories([Ingredient|Rest], TotalCalories) :-
+    ingredient(Ingredient, _, CaloriesPer100g),
+    calculate_ingredients_calories(Rest, RestCalories),
+    TotalCalories is RestCalories + CaloriesPer100g.
+
+% Find low-calorie dishes (less than specified limit)
+find_low_calorie_dishes(CalorieLimit, LowCalorieDishes) :-
+    findall(DishName, (dish(DishName, _, _, Calories, _), Calories < CalorieLimit), LowCalorieDishes).
+
+% Find dishes suitable for a custom profile
+custom_recommendation(DietType, Allergies, CalorieLimit, RecommendedDishes) :-
+    get_all_recommended_dishes(DietType, Allergies, CalorieLimit, RecommendedDishes).
+
+% Find dishes with specific ingredients
+dishes_with_ingredients(RequiredIngredients, MatchingDishes) :-
+    findall(DishName, 
+            (dish(DishName, DishIngredients, _, _, _), 
+             subset(RequiredIngredients, DishIngredients)),
+            MatchingDishes).
+
+% Main entry point for the system
+% Usage: personalized_menu(DietType, CalorieLimit, AllergiesList, RecommendedDishes).
+% Example: personalized_menu('Vegetarian', 500, ['Gluten'], Dishes).
+personalized_menu(DietType, CalorieLimit, AllergiesList, RecommendedDishes) :-
+    get_all_recommended_dishes(DietType, AllergiesList, CalorieLimit, RecommendedDishes),
+    format('~nPersonalized menu for ~w diet with ~w calorie limit and allergies to ~w:~n', [DietType, CalorieLimit, AllergiesList]),
+    print_dishes(RecommendedDishes).
+
+% Helper to print dishes in a nice format
+print_dishes([]) :- 
+    write('No suitable dishes found based on your criteria.'), nl.
+print_dishes(Dishes) :- 
+    write('Recommended dishes:'), nl,
+    print_dish_list(Dishes, 1).
+
+print_dish_list([], _).
+print_dish_list([Dish|Rest], N) :-
+    dish(Dish, _, _, Calories, Allergens),
+    format('~w. ~w (~w calories) [Allergens: ~w]~n', [N, Dish, Calories, Allergens]),
+    N1 is N + 1,
+    print_dish_list(Rest, N1).

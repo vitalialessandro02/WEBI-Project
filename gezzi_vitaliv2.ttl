@@ -1,0 +1,87 @@
+@prefix : <http://example.org/restaurant-menu#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Class definitions
+:Ingredient a rdf:Class .
+:DietType a rdf:Class .
+:Allergen a rdf:Class .
+:CalorieValue a rdf:Class .
+
+# Properties
+:hasCaloriesValue a rdf:Property .
+:hasIngredient a rdf:Property .
+:hasIngredientQuantity a rdf:Property .
+:ingredientGrams a rdf:Property .
+:caloriesPer100g a rdf:Property .
+:value a rdf:Property .
+:hasMeal a rdf:Property .
+:hasDietType a rdf:Property .
+:hasAllergen a rdf:Property .
+
+# Ingredient data (quantities and per-100g calories)
+:Pasta :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "130"^^xsd:integer .
+:Eggs :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "155"^^xsd:integer .
+:Pancetta :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "540"^^xsd:integer .
+:Cheese :ingredientGrams "30"^^xsd:integer ; :caloriesPer100g "350"^^xsd:integer .
+:Dough :ingredientGrams "200"^^xsd:integer ; :caloriesPer100g "250"^^xsd:integer .
+:TomatoSauce :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "35"^^xsd:integer .
+:Mozzarella :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "280"^^xsd:integer .
+:Basil :ingredientGrams "5"^^xsd:integer ; :caloriesPer100g "22"^^xsd:integer .
+:Chili :ingredientGrams "5"^^xsd:integer ; :caloriesPer100g "40"^^xsd:integer .
+:Garlic :ingredientGrams "5"^^xsd:integer ; :caloriesPer100g "149"^^xsd:integer .
+:Beef :ingredientGrams "250"^^xsd:integer ; :caloriesPer100g "250"^^xsd:integer .
+:Tomato :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "18"^^xsd:integer .
+:OliveOil :ingredientGrams "10"^^xsd:integer ; :caloriesPer100g "900"^^xsd:integer .
+:Rice :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "130"^^xsd:integer .
+:Mushrooms :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "22"^^xsd:integer .
+:VegetableBroth :ingredientGrams "200"^^xsd:integer ; :caloriesPer100g "10"^^xsd:integer .
+:Parmesan :ingredientGrams "30"^^xsd:integer ; :caloriesPer100g "420"^^xsd:integer .
+:Ragu :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "120"^^xsd:integer .
+:Bechamel :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "350"^^xsd:integer .
+:Ladyfingers :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "380"^^xsd:integer .
+:Mascarpone :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "450"^^xsd:integer .
+:Coffee :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "2"^^xsd:integer .
+:Cocoa :ingredientGrams "10"^^xsd:integer ; :caloriesPer100g "355"^^xsd:integer .
+:Lettuce :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "15"^^xsd:integer .
+:Carrots :ingredientGrams "30"^^xsd:integer ; :caloriesPer100g "40"^^xsd:integer .
+:Cucumber :ingredientGrams "30"^^xsd:integer ; :caloriesPer100g "16"^^xsd:integer .
+:Tuna :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "130"^^xsd:integer .
+:Bread :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "265"^^xsd:integer .
+:Eggplant :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "25"^^xsd:integer .
+:Gnocchi :ingredientGrams "100"^^xsd:integer ; :caloriesPer100g "160"^^xsd:integer .
+:PineNuts :ingredientGrams "20"^^xsd:integer ; :caloriesPer100g "670"^^xsd:integer .
+:Gorgonzola :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "350"^^xsd:integer .
+:Fontina :ingredientGrams "50"^^xsd:integer ; :caloriesPer100g "380"^^xsd:integer .
+
+# Calculated calorie values (truncated)
+:SpaghettiAllaCarbonara :hasCaloriesValue :Calc1 .
+:Calc1 a :CalorieValue ; :value "456"^^xsd:integer .
+:PizzaMargherita :hasCaloriesValue :Calc2 .
+:Calc2 a :CalorieValue ; :value "721"^^xsd:integer .
+:PenneAllArrabbiata :hasCaloriesValue :Calc3 .
+:Calc3 a :CalorieValue ; :value "182"^^xsd:integer .
+:BisteccaAllaFiorentina :hasCaloriesValue :Calc4 .
+:Calc4 a :CalorieValue ; :value "625"^^xsd:integer .
+:InsalataCaprese :hasCaloriesValue :Calc5 .
+:Calc5 a :CalorieValue ; :value "419"^^xsd:integer .
+:RisottoAiFunghi :hasCaloriesValue :Calc6 .
+:Calc6 a :CalorieValue ; :value "271"^^xsd:integer .
+:PastaAlPomodoro :hasCaloriesValue :Calc7 .
+:Calc7 a :CalorieValue ; :value "139"^^xsd:integer .
+:Lasagne :hasCaloriesValue :Calc8 .
+:Calc8 a :CalorieValue ; :value "716"^^xsd:integer .
+:Tiramisu :hasCaloriesValue :Calc9 .
+:Calc9 a :CalorieValue ; :value "820"^^xsd:integer .
+:InsalataMista :hasCaloriesValue :Calc10 .
+:Calc10 a :CalorieValue ; :value "72"^^xsd:integer .
+:SpaghettiAlTonno :hasCaloriesValue :Calc11 .
+:Calc11 a :CalorieValue ; :value "432"^^xsd:integer .
+:Bruschetta :hasCaloriesValue :Calc12 .
+:Calc12 a :CalorieValue ; :value "170"^^xsd:integer .
+:MelanzaneAllaParmigiana :hasCaloriesValue :Calc13 .
+:Calc13 a :CalorieValue ; :value "332"^^xsd:integer .
+:GnocchiAlPesto :hasCaloriesValue :Calc14 .
+:Calc14 a :CalorieValue ; :value "481"^^xsd:integer .
+:PizzaQuattroFormaggi :hasCaloriesValue :Calc15 .
+:Calc15 a :CalorieValue ; :value "1011"^^xsd:integer .

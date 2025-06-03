@@ -1,0 +1,12 @@
+Guest(?g) ^ hasAllergy(?g, ?a) ^ Meal(?m) ^ hasAllergen(?m, ?a) -> notRecommended(?g, ?m)
+
+
+Guest(?g) ^ hasDietPreference(?g, ?dp) ^ Meal(?m) ^ hasDietType(?m, ?mt) ^ swrlb:notEqual(?dp, ?mt) -> notRecommended(?g, ?m)
+
+
+Guest(?g) ^ Meal(?m) ^ hasDietPreference(?g, ?d) ^ hasDietType(?m, ?d) ^ hasCalorieLimit(?g, ?limit) ^ hasCalories(?m, ?c) ^ swrlb:lessThan(?c, ?limit) -> canEat(?g, ?m)
+
+
+
+
+Guest(?g) ^ hasCalorieLimit(?g, ?limit) ^ Meal(?m) ^ hasCalories(?m, ?cal) ^ swrlb:greaterThan(?cal, ?limit) -> notRecommended(?g, ?m)

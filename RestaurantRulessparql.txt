@@ -1,0 +1,98 @@
+\\Diet Compatibility Rules
+
+RULE carnivoreCompatible
+    WHEN {
+        ?g :followsDiet :Carnivore .
+        ?d :hasDietType :Carnivore .
+    }
+    THEN {
+        ?d :isCompatibleWith ?g .
+    } .
+
+RULE vegetarianCompatible
+    WHEN {
+        ?g :followsDiet :Vegetarian .
+        ?d :hasDietType :Vegetarian .
+    }
+    THEN {
+        ?d :isCompatibleWith ?g .
+    } .
+
+RULE vegetarianAcceptsVegan
+    WHEN {
+        ?g :followsDiet :Vegetarian .
+        ?d :hasDietType :Vegan .
+    }
+    THEN {
+        ?d :isCompatibleWith ?g .
+    } .
+
+RULE veganCompatible
+    WHEN {
+        ?g :followsDiet :Vegan .
+        ?d :hasDietType :Vegan .
+    }
+    THEN {
+        ?d :isCompatibleWith ?g .
+    } .
+
+
+
+
+
+\\Allergy Safety Rules
+
+
+RULE hasAllergenForGuest
+    WHEN {
+        ?g :hasAllergy ?a .
+        ?d :hasAllergen ?a .
+    }
+    THEN {
+        ?d :hasAllergenForGuest ?g .
+    } .
+
+RULE isAllergySafeFor
+    WHEN {
+        FILTER NOT EXISTS {
+            ?d :hasAllergenForGuest ?g .
+        }
+    }
+    THEN {
+        ?d :isAllergySafeFor ?g .
+    } .
+
+
+\\Calorie Limit Rules
+
+RULE meetsCalorieLimitPositive
+    WHEN {
+        ?g :hasCalorieLimit ?limit .
+        ?d :hasCalories ?cal .
+        FILTER(?limit > 0 && ?cal <= ?limit)
+    }
+    THEN {
+        ?d :meetsCalorieLimitFor ?g .
+    } .
+
+RULE meetsCalorieLimitZero
+    WHEN {
+        ?g :hasCalorieLimit 0 .
+    }
+    THEN {
+        ?d :meetsCalorieLimitFor ?g .
+    } .
+
+
+
+\\Recommendation Rules
+
+RULE isRecommendedFor
+    WHEN {
+        ?d :isCompatibleWith ?g .
+        ?d :isAllergySafeFor ?g .
+        ?d :meetsCalorieLimitFor ?g .
+    }
+    THEN {
+        ?d :isRecommendedFor ?g .
+    } .

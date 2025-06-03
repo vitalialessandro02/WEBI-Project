@@ -1,0 +1,21 @@
+PREFIX : <http://example.org/restaurant-menu#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?meal
+WHERE {
+  # Il piatto ha il tipo di dieta dell'utente
+  ?meal :hasDietType :Carnivore .
+
+  # Il piatto ha un valore calorico associato
+  ?meal :hasCaloriesValue ?calorieNode .
+  ?calorieNode :value ?calValue .
+
+  # Il valore calorico è minore di quello massimo specificato
+  FILTER(xsd:integer(?calValue) < 800)
+
+  # Escludi i piatti che hanno allergeni dell’utente
+  FILTER NOT EXISTS {
+    ?meal :hasAllergen ?userAllergen .
+    VALUES ?userAllergen {  :Lactose  }  # Sostituisci con allergeni dell'utente
+  }
+}

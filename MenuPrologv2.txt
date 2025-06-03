@@ -1,0 +1,161 @@
+% Ingredient Facts
+% ingredient(Name, Type, CaloriesPer100g)
+ingredient('pasta', 'carboidrati', 130).
+ingredient('impasto', 'carboidrati', 250).
+ingredient('riso', 'carboidrati', 130).
+ingredient('uova', 'proteina', 155).
+ingredient('pancetta', 'carne', 540).
+ingredient('formaggio', 'latticini', 350).
+ingredient('mozzarella', 'latticini', 280).
+ingredient('parmigiano', 'latticini', 420).
+ingredient('gorgonzola', 'latticini', 350).
+ingredient('fontina', 'latticini', 380).
+ingredient('salsa di pomodoro', 'verdura', 35).
+ingredient('pomodoro', 'verdura', 18).
+ingredient('basilico', 'verdura', 22).
+ingredient('peperoncino', 'verdura', 40).
+ingredient('aglio', 'verdura', 149).
+ingredient('funghi', 'verdura', 22).
+ingredient('carne di manzo', 'carne', 250).
+ingredient('tonno', 'pesce', 130).
+ingredient('olio', 'condimento', 900).
+ingredient('brodo vegetale', 'condimento', 10).
+ingredient('ragù', 'carne', 120).
+ingredient('besciamella', 'latticini', 350).
+ingredient('lattuga', 'verdura', 15).
+ingredient('carote', 'verdura', 40).
+ingredient('cetrioli', 'verdura', 16).
+ingredient('pane', 'carboidrati', 265).
+ingredient('melanzane', 'verdura', 25).
+ingredient('gnocchi', 'carboidrati', 160).
+ingredient('pinoli', 'frutta secca', 670).
+ingredient('savoiardi', 'carboidrati', 380).
+ingredient('mascarpone', 'latticini', 450).
+ingredient('caffe', 'bevanda', 2).
+ingredient('cacao', 'condimento', 355).
+
+% Dishes
+% dish(Name, Ingredients, DietTypes, Allergens)
+dish('Spaghetti alla Carbonara', ['pasta', 'uova', 'pancetta', 'formaggio'], ['Carnivore'], ['Gluten', 'Lactose', 'Eggs']).
+dish('Pizza Margherita', ['impasto', 'salsa di pomodoro', 'mozzarella', 'basilico'], ['Vegetarian', 'Carnivore'], ['Gluten', 'Lactose']).
+dish('Penne all\'Arrabbiata', ['pasta', 'salsa di pomodoro', 'peperoncino', 'aglio'], ['Vegan', 'Vegetarian', 'Carnivore'], ['Gluten']).
+dish('Bistecca alla Fiorentina', ['carne di manzo'], ['Carnivore'], []).
+dish('Insalata Caprese', ['pomodoro', 'mozzarella', 'basilico', 'olio'], ['Vegetarian', 'Carnivore'], ['Lactose']).
+dish('Risotto ai Funghi', ['riso', 'funghi', 'brodo vegetale', 'parmigiano'], ['Vegetarian', 'Carnivore'], ['Lactose']).
+dish('Pasta al Pomodoro', ['pasta', 'salsa di pomodoro', 'basilico'], ['Vegan', 'Vegetarian', 'Carnivore'], ['Gluten']).
+dish('Lasagne', ['pasta', 'ragù', 'besciamella', 'parmigiano'], ['Carnivore'], ['Gluten', 'Lactose']).
+dish('Tiramisu', ['savoiardi', 'mascarpone', 'caffe', 'cacao'], ['Vegetarian', 'Carnivore'], ['Gluten', 'Lactose', 'Eggs']).
+dish('Insalata Mista', ['lattuga', 'pomodoro', 'carote', 'cetrioli'], ['Vegan', 'Vegetarian', 'Carnivore'], []).
+dish('Spaghetti al Tonno', ['pasta', 'tonno', 'aglio', 'olio'], ['Carnivore'], ['Gluten', 'Fish']).
+dish('Bruschetta', ['pane', 'pomodoro', 'aglio', 'basilico'], ['Vegan', 'Vegetarian', 'Carnivore'], ['Gluten']).
+dish('Melanzane alla Parmigiana', ['melanzane', 'pomodoro', 'mozzarella', 'parmigiano'], ['Vegetarian', 'Carnivore'], ['Lactose']).
+dish('Gnocchi al Pesto', ['gnocchi', 'basilico', 'pinoli', 'parmigiano', 'aglio'], ['Vegetarian', 'Carnivore'], ['Gluten', 'Lactose', 'Nuts']).
+dish('Pizza Quattro Formaggi', ['impasto', 'mozzarella', 'gorgonzola', 'parmigiano', 'fontina'], ['Vegetarian', 'Carnivore'], ['Gluten', 'Lactose']).
+
+% Ingredient quantities per dish (grams)
+ingredient_quantity('Spaghetti alla Carbonara', 'pasta', 100).
+ingredient_quantity('Spaghetti alla Carbonara', 'uova', 50).
+ingredient_quantity('Spaghetti alla Carbonara', 'pancetta', 50).
+ingredient_quantity('Spaghetti alla Carbonara', 'formaggio', 30).
+ingredient_quantity('Pizza Margherita', 'impasto', 200).
+ingredient_quantity('Pizza Margherita', 'salsa di pomodoro', 50).
+ingredient_quantity('Pizza Margherita', 'mozzarella', 100).
+ingredient_quantity('Pizza Margherita', 'basilico', 5).
+ingredient_quantity('Penne all\'Arrabbiata', 'pasta', 100).
+ingredient_quantity('Penne all\'Arrabbiata', 'salsa di pomodoro', 50).
+ingredient_quantity('Penne all\'Arrabbiata', 'peperoncino', 5).
+ingredient_quantity('Penne all\'Arrabbiata', 'aglio', 5).
+ingredient_quantity('Bistecca alla Fiorentina', 'carne di manzo', 250).
+ingredient_quantity('Insalata Caprese', 'pomodoro', 100).
+ingredient_quantity('Insalata Caprese', 'mozzarella', 100).
+ingredient_quantity('Insalata Caprese', 'basilico', 5).
+ingredient_quantity('Insalata Caprese', 'olio', 10).
+ingredient_quantity('Risotto ai Funghi', 'riso', 100).
+ingredient_quantity('Risotto ai Funghi', 'funghi', 50).
+ingredient_quantity('Risotto ai Funghi', 'brodo vegetale', 200).
+ingredient_quantity('Risotto ai Funghi', 'parmigiano', 30).
+ingredient_quantity('Pasta al Pomodoro', 'pasta', 100).
+ingredient_quantity('Pasta al Pomodoro', 'salsa di pomodoro', 50).
+ingredient_quantity('Pasta al Pomodoro', 'basilico', 5).
+ingredient_quantity('Lasagne', 'pasta', 100).
+ingredient_quantity('Lasagne', 'ragù', 100).
+ingredient_quantity('Lasagne', 'besciamella', 100).
+ingredient_quantity('Lasagne', 'parmigiano', 30).
+ingredient_quantity('Tiramisu', 'savoiardi', 100).
+ingredient_quantity('Tiramisu', 'mascarpone', 100).
+ingredient_quantity('Tiramisu', 'caffe', 50).
+ingredient_quantity('Tiramisu', 'cacao', 10).
+ingredient_quantity('Insalata Mista', 'lattuga', 50).
+ingredient_quantity('Insalata Mista', 'pomodoro', 50).
+ingredient_quantity('Insalata Mista', 'carote', 30).
+ingredient_quantity('Insalata Mista', 'cetrioli', 30).
+ingredient_quantity('Spaghetti al Tonno', 'pasta', 100).
+ingredient_quantity('Spaghetti al Tonno', 'tonno', 50).
+ingredient_quantity('Spaghetti al Tonno', 'aglio', 5).
+ingredient_quantity('Spaghetti al Tonno', 'olio', 10).
+ingredient_quantity('Bruschetta', 'pane', 50).
+ingredient_quantity('Bruschetta', 'pomodoro', 50).
+ingredient_quantity('Bruschetta', 'aglio', 5).
+ingredient_quantity('Bruschetta', 'basilico', 5).
+ingredient_quantity('Melanzane alla Parmigiana', 'melanzane', 100).
+ingredient_quantity('Melanzane alla Parmigiana', 'pomodoro', 50).
+ingredient_quantity('Melanzane alla Parmigiana', 'mozzarella', 50).
+ingredient_quantity('Melanzane alla Parmigiana', 'parmigiano', 30).
+ingredient_quantity('Gnocchi al Pesto', 'gnocchi', 100).
+ingredient_quantity('Gnocchi al Pesto', 'basilico', 20).
+ingredient_quantity('Gnocchi al Pesto', 'pinoli', 20).
+ingredient_quantity('Gnocchi al Pesto', 'parmigiano', 30).
+ingredient_quantity('Gnocchi al Pesto', 'aglio', 5).
+ingredient_quantity('Pizza Quattro Formaggi', 'impasto', 200).
+ingredient_quantity('Pizza Quattro Formaggi', 'mozzarella', 50).
+ingredient_quantity('Pizza Quattro Formaggi', 'gorgonzola', 50).
+ingredient_quantity('Pizza Quattro Formaggi', 'parmigiano', 30).
+ingredient_quantity('Pizza Quattro Formaggi', 'fontina', 50).
+
+% Calorie calculation
+calculate_dish_calories(DishName, TotalCalories) :-
+    findall(Calories,
+        (ingredient_quantity(DishName, Ingredient, Quantity),
+         ingredient(Ingredient, _, CaloriesPer100g),
+         Calories is (CaloriesPer100g * Quantity) / 100),
+        CalList),
+    sumlist(CalList, TotalCalories).
+
+% Allergy/Diet rules
+diet_compatible(Dish, Diet) :-
+    dish(Dish, _, DietTypes, _),
+    (Diet = 'Carnivore' ; member(Diet, DietTypes)).
+
+allergy_safe(Dish, []) :- dish(Dish, _, _, _).
+allergy_safe(Dish, Allergies) :-
+    dish(Dish, _, _, DishAllergens),
+    \+ (member(A, Allergies), member(A, DishAllergens)).
+
+meets_calorie_limit(Dish, Limit) :-
+    (Limit =< 0 ; Limit = null) ;
+    (calculate_dish_calories(Dish, Calories), Calories =< Limit).
+
+recommend_dish(Dish, Diet, Allergies, CalLimit) :-
+    diet_compatible(Dish, Diet),
+    allergy_safe(Dish, Allergies),
+    meets_calorie_limit(Dish, CalLimit).
+
+% Personalized menu
+get_all_recommended_dishes(Diet, Allergies, CalLimit, Dishes) :-
+    setof(D, recommend_dish(D, Diet, Allergies, CalLimit), Dishes), !.
+get_all_recommended_dishes(_, _, _, []).
+
+
+personalized_menu(Diet, CalLimit, Allergies, Dishes) :-
+    get_all_recommended_dishes(Diet, Allergies, CalLimit, Dishes),
+    format('~nMenu personalizzato per dieta ~w, limite ~w kcal, allergie: ~w~n', [Diet, CalLimit, Allergies]),
+    print_dish_list(Dishes, 1).
+
+print_dish_list([], _).
+print_dish_list([Dish|Rest], N) :-
+    calculate_dish_calories(Dish, CalFloat),
+    floor(CalFloat, Calories),  % tronca a intero
+    dish(Dish, _, _, Allergens),
+    format('~w. ~w (~w kcal) [Allergeni: ~w]~n', [N, Dish, Calories, Allergens]),
+    N1 is N + 1,
+    print_dish_list(Rest, N1).

@@ -1,0 +1,242 @@
+@prefix : <http://example.org/restaurant-menu#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Class definitions
+:Ingredient a rdf:Class .
+:DietType a rdf:Class .
+:Allergen a rdf:Class .
+:CalorieValue a rdf:Class .
+
+# Property for linking dish to calorie node
+:hasCaloriesValue a rdf:Property .
+
+# Menu
+:Menu
+  :hasMeal :SpaghettiAllaCarbonara ;
+  :hasMeal :PizzaMargherita ;
+  :hasMeal :PenneAllArrabbiata ;
+  :hasMeal :BisteccaAllaFiorentina ;
+  :hasMeal :InsalataCaprese ;
+  :hasMeal :RisottoAiFunghi ;
+  :hasMeal :PastaAlPomodoro ;
+  :hasMeal :Lasagne ;
+  :hasMeal :Tiramisu ;
+  :hasMeal :InsalataMista ;
+  :hasMeal :SpaghettiAlTonno ;
+  :hasMeal :Bruschetta ;
+  :hasMeal :MelanzaneAllaParmigiana ;
+  :hasMeal :GnocchiAlPesto ;
+  :hasMeal :PizzaQuattroFormaggi .
+
+# Dishes (showing first as example, rest below)
+:SpaghettiAllaCarbonara
+  :hasIngredient :Pasta ;
+  :hasIngredient :Eggs ;
+  :hasIngredient :Pancetta ;
+  :hasIngredient :Cheese ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasAllergen :Lactose ;
+  :hasAllergen :Eggs ;
+  :hasCaloriesValue :650 .
+
+:650 a :CalorieValue ;
+  :value "650"^^xsd:integer .
+
+:PizzaMargherita
+  :hasIngredient :Dough ;
+  :hasIngredient :TomatoSauce ;
+  :hasIngredient :Mozzarella ;
+  :hasIngredient :Basil ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasAllergen :Lactose ;
+  :hasCaloriesValue :850 .
+
+:850 a :CalorieValue ;
+  :value "850"^^xsd:integer .
+
+:PenneAllArrabbiata
+  :hasIngredient :Pasta ;
+  :hasIngredient :TomatoSauce ;
+  :hasIngredient :Chili ;
+  :hasIngredient :Garlic ;
+  :hasDietType :Vegan ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasCaloriesValue :450 .
+
+:450 a :CalorieValue ;
+  :value "450"^^xsd:integer .
+
+:BisteccaAllaFiorentina
+  :hasIngredient :Beef ;
+  :hasDietType :Carnivore ;
+  :hasCaloriesValue :550 .
+
+:550 a :CalorieValue ;
+  :value "550"^^xsd:integer .
+
+:InsalataCaprese
+  :hasIngredient :Tomato ;
+  :hasIngredient :Mozzarella ;
+  :hasIngredient :Basil ;
+  :hasIngredient :OliveOil ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Lactose ;
+  :hasCaloriesValue :300 .
+
+:300 a :CalorieValue ;
+  :value "300"^^xsd:integer .
+
+:RisottoAiFunghi
+  :hasIngredient :Rice ;
+  :hasIngredient :Mushrooms ;
+  :hasIngredient :VegetableBroth ;
+  :hasIngredient :Parmesan ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Lactose ;
+  :hasCaloriesValue :450 .
+
+
+
+:PastaAlPomodoro
+  :hasIngredient :Pasta ;
+  :hasIngredient :TomatoSauce ;
+  :hasIngredient :Basil ;
+  :hasDietType :Vegan ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasCaloriesValue :380 .
+
+:380 a :CalorieValue ;
+  :value "380"^^xsd:integer .
+
+:Lasagne
+  :hasIngredient :Pasta ;
+  :hasIngredient :Ragu ;
+  :hasIngredient :Bechamel ;
+  :hasIngredient :Parmesan ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasAllergen :Lactose ;
+  :hasCaloriesValue :750 .
+
+:750 a :CalorieValue ;
+  :value "750"^^xsd:integer .
+
+:Tiramisu
+  :hasIngredient :Ladyfingers ;
+  :hasIngredient :Mascarpone ;
+  :hasIngredient :Coffee ;
+  :hasIngredient :Cocoa ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasAllergen :Lactose ;
+  :hasAllergen :Eggs ;
+  :hasCaloriesValue :420 .
+
+:420 a :CalorieValue ;
+  :value "420"^^xsd:integer .
+
+:InsalataMista
+  :hasIngredient :Lettuce ;
+  :hasIngredient :Tomato ;
+  :hasIngredient :Carrots ;
+  :hasIngredient :Cucumber ;
+  :hasDietType :Vegan ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasCaloriesValue :120 .
+
+:120 a :CalorieValue ;
+  :value "120"^^xsd:integer .
+
+:SpaghettiAlTonno
+  :hasIngredient :Pasta ;
+  :hasIngredient :Tuna ;
+  :hasIngredient :Garlic ;
+  :hasIngredient :OliveOil ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasAllergen :Fish ;
+  :hasCaloriesValue :520 .
+
+:520 a :CalorieValue ;
+  :value "520"^^xsd:integer .
+
+:Bruschetta
+  :hasIngredient :Bread ;
+  :hasIngredient :Tomato ;
+  :hasIngredient :Garlic ;
+  :hasIngredient :Basil ;
+  :hasDietType :Vegan ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasCaloriesValue :180 .
+
+:180 a :CalorieValue ;
+  :value "180"^^xsd:integer .
+
+:MelanzaneAllaParmigiana
+  :hasIngredient :Eggplant ;
+  :hasIngredient :Tomato ;
+  :hasIngredient :Mozzarella ;
+  :hasIngredient :Parmesan ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Lactose ;
+  :hasCaloriesValue :380 .
+
+
+:GnocchiAlPesto
+  :hasIngredient :Gnocchi ;
+  :hasIngredient :Basil ;
+  :hasIngredient :PineNuts ;
+  :hasIngredient :Parmesan ;
+  :hasIngredient :Garlic ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasAllergen :Lactose ;
+  :hasAllergen :Nuts ;
+  :hasCaloriesValue :550 .
+
+
+
+:PizzaQuattroFormaggi
+  :hasIngredient :Dough ;
+  :hasIngredient :Mozzarella ;
+  :hasIngredient :Gorgonzola ;
+  :hasIngredient :Parmesan ;
+  :hasIngredient :Fontina ;
+  :hasDietType :Vegetarian ;
+  :hasDietType :Carnivore ;
+  :hasAllergen :Gluten ;
+  :hasAllergen :Lactose ;
+  :hasCaloriesValue :950 .
+
+
+
+# Ingredient, diet type, and allergen instances (as before)
+:Pasta a :Ingredient . :Eggs a :Ingredient . :Pancetta a :Ingredient . :Cheese a :Ingredient .
+:Dough a :Ingredient . :TomatoSauce a :Ingredient . :Mozzarella a :Ingredient . :Basil a :Ingredient .
+:Chili a :Ingredient . :Garlic a :Ingredient . :Beef a :Ingredient . :Tomato a :Ingredient .
+:OliveOil a :Ingredient . :Rice a :Ingredient . :Mushrooms a :Ingredient . :VegetableBroth a :Ingredient .
+:Parmesan a :Ingredient . :Ragu a :Ingredient . :Bechamel a :Ingredient . :Ladyfingers a :Ingredient .
+:Mascarpone a :Ingredient . :Coffee a :Ingredient . :Cocoa a :Ingredient . :Lettuce a :Ingredient .
+:Carrots a :Ingredient . :Cucumber a :Ingredient . :Tuna a :Ingredient . :Bread a :Ingredient .
+:Eggplant a :Ingredient . :Gnocchi a :Ingredient . :PineNuts a :Ingredient . :Gorgonzola a :Ingredient .
+:Fontina a :Ingredient .
+
+:Vegan a :DietType . :Vegetarian a :DietType . :Carnivore a :DietType .
+
+:Gluten a :Allergen . :Lactose a :Allergen . :Eggs a :Allergen . :Fish a :Allergen . :Nuts a :Allergen .
