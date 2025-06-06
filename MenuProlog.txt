@@ -65,13 +65,13 @@ diet_compatible(DishName, 'Vegan') :-
     dish(DishName, _, DietTypes, _, _), 
     member('Vegan', DietTypes).
 
-% Allergy Safety Rules
-allergy_safe(DishName, []) :- 
-    dish(DishName, _, _, _, _).
-
 allergy_safe(DishName, GuestAllergies) :- 
     dish(DishName, _, _, _, DishAllergens), 
-    \+ (member(Allergen, GuestAllergies), member(Allergen, DishAllergens)).
+    forall(member(Allergen, GuestAllergies),
+           \+ member(Allergen, DishAllergens)).
+
+
+
 
 % Calorie Check Rules
 meets_calorie_limit(DishName, CalorieLimit) :- 
@@ -89,31 +89,12 @@ recommend_dish(DishName, DietType, Allergies, CalorieLimit) :-
     allergy_safe(DishName, Allergies), 
     meets_calorie_limit(DishName, CalorieLimit).
 
-% Helper rule to get all recommended dishes
-get_all_recommended_dishes(DietType, Allergies, CalorieLimit, RecommendedDishes) :- 
-    setof(DishName, recommend_dish(DishName, DietType, Allergies, CalorieLimit), RecommendedDishes), !.
-get_all_recommended_dishes(_, _, _, []).  % fallback in caso non ci siano risultati
+get_all_recommended_dishes(DietType, Allergies, CalorieLimit, RecommendedDishes) :-
+    findall(DishName, recommend_dish(DishName, DietType, Allergies, CalorieLimit), DishList),
+    sort(DishList, RecommendedDishes).
 
-% Guest Profile Definitions
-guest_profile('Carnivore', [], 0).
-guest_profile('Vegetarian', [], 0).
-guest_profile('Vegan', [], 0).
-guest_profile('Calorie-conscious', [], 500).
-guest_profile('Gluten-intolerant', ['Gluten'], 0).
-guest_profile('Lactose-intolerant', ['Lactose'], 0).
-guest_profile('Low-calorie Vegetarian', [], 400).
-guest_profile('Allergic to Nuts', ['Nuts'], 0).
-guest_profile('No Seafood', ['Fish', 'Shellfish'], 0).
-guest_profile('Multiple Allergies', ['Gluten', 'Lactose', 'Eggs'], 0).
 
-% Get recommendations for a specific guest profile
-recommend_for_profile(ProfileName, RecommendedDishes) :-
-    guest_profile(ProfileName, Allergies, CalorieLimit),
-    (ProfileName = 'Vegan' -> DietType = 'Vegan' ;
-     ProfileName = 'Vegetarian' -> DietType = 'Vegetarian' ;
-     ProfileName = 'Low-calorie Vegetarian' -> DietType = 'Vegetarian' ;
-     DietType = 'Carnivore'),
-    get_all_recommended_dishes(DietType, Allergies, CalorieLimit, RecommendedDishes).
+
 
 % Helper rule to check ingredient types in a dish
 dish_contains_ingredient_type(DishName, IngredientType) :-
@@ -151,9 +132,8 @@ dishes_with_ingredients(RequiredIngredients, MatchingDishes) :-
              subset(RequiredIngredients, DishIngredients)),
             MatchingDishes).
 
-% Main entry point for the system
-% Usage: personalized_menu(DietType, CalorieLimit, AllergiesList, RecommendedDishes).
-% Example: personalized_menu('Vegetarian', 500, ['Gluten'], Dishes).
+
+
 personalized_menu(DietType, CalorieLimit, AllergiesList, RecommendedDishes) :-
     get_all_recommended_dishes(DietType, AllergiesList, CalorieLimit, RecommendedDishes),
     format('~nPersonalized menu for ~w diet with ~w calorie limit and allergies to ~w:~n', [DietType, CalorieLimit, AllergiesList]),
@@ -171,4 +151,4 @@ print_dish_list([Dish|Rest], N) :-
     dish(Dish, _, _, Calories, Allergens),
     format('~w. ~w (~w calories) [Allergens: ~w]~n', [N, Dish, Calories, Allergens]),
     N1 is N + 1,
-    print_dish_list(Rest, N1).
+    print_dish_list(Rest, N1). 
