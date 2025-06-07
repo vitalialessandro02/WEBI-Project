@@ -93,47 +93,6 @@ get_all_recommended_dishes(DietType, Allergies, CalorieLimit, RecommendedDishes)
     findall(DishName, recommend_dish(DishName, DietType, Allergies, CalorieLimit), DishList),
     sort(DishList, RecommendedDishes).
 
-
-
-
-% Helper rule to check ingredient types in a dish
-dish_contains_ingredient_type(DishName, IngredientType) :-
-    dish(DishName, Ingredients, _, _, _),
-    member(Ingredient, Ingredients),
-    ingredient(Ingredient, IngredientType, _).
-
-% Find dishes with specific ingredient type
-find_dishes_with_ingredient_type(IngredientType, DishList) :-
-    findall(DishName, dish_contains_ingredient_type(DishName, IngredientType), DishList).
-
-% Calculate total calories from ingredients (approximate)
-calculate_dish_calories(DishName, TotalCalories) :-
-    dish(DishName, Ingredients, _, _, _),
-    calculate_ingredients_calories(Ingredients, TotalCalories).
-
-calculate_ingredients_calories([], 0).
-calculate_ingredients_calories([Ingredient|Rest], TotalCalories) :-
-    ingredient(Ingredient, _, CaloriesPer100g),
-    calculate_ingredients_calories(Rest, RestCalories),
-    TotalCalories is RestCalories + CaloriesPer100g.
-
-% Find low-calorie dishes (less than specified limit)
-find_low_calorie_dishes(CalorieLimit, LowCalorieDishes) :-
-    findall(DishName, (dish(DishName, _, _, Calories, _), Calories < CalorieLimit), LowCalorieDishes).
-
-% Find dishes suitable for a custom profile
-custom_recommendation(DietType, Allergies, CalorieLimit, RecommendedDishes) :-
-    get_all_recommended_dishes(DietType, Allergies, CalorieLimit, RecommendedDishes).
-
-% Find dishes with specific ingredients
-dishes_with_ingredients(RequiredIngredients, MatchingDishes) :-
-    findall(DishName, 
-            (dish(DishName, DishIngredients, _, _, _), 
-             subset(RequiredIngredients, DishIngredients)),
-            MatchingDishes).
-
-
-
 personalized_menu(DietType, CalorieLimit, AllergiesList, RecommendedDishes) :-
     get_all_recommended_dishes(DietType, AllergiesList, CalorieLimit, RecommendedDishes),
     format('~nPersonalized menu for ~w diet with ~w calorie limit and allergies to ~w:~n', [DietType, CalorieLimit, AllergiesList]),
